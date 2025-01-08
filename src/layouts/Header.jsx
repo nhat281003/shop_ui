@@ -14,7 +14,7 @@ export default function Header() {
         sx={{
           backgroundColor: "#f5f5f5",
           boxShadow: "none",
-          border: "1px solid black",
+          borderBottom: "1px solid black",
           height: "96px",
           color: "black",
           display: "flex",
@@ -30,6 +30,11 @@ export default function Header() {
           <Button
             sx={{ backgroundColor: "#f5f5f5", border: "1px solid black", '&:hover': { backgroundColor: '#f5f5f5'} ,}}
             color="inherit"
+            onClick={
+              () => {
+                window.location.href = "/login";
+              }
+            }
             className="item-other"
           >
             Login
