@@ -1,16 +1,17 @@
-function MyButton() {
-  return (
-    <button onClick={() => alert("hehe")}>
-      I'm a button hehe
-    </button>
-  );
-}
-
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import HomePage from "./pages/Home";
+// import CartPage from "./pages/Cart";
+import Header from "./components/Header";
+// import Footer from "./components/Footer";
 export default function MyApp() {
   return (
-    <div>
-      <h1>Welcome to my app</h1>
-      <MyButton />
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/cart" element={<CartPage />} /> */}
+      </Routes>
+      {/* <Footer /> */}
+    </BrowserRouter>
   );
 }
