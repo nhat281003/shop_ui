@@ -1,16 +1,19 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import HomePage from "./pages/Home";
+import { Container } from "@mui/material";
+import Home from "./pages/Home";
 // import CartPage from "./pages/Cart";
-import Header from "./components/Header";
-// import Footer from "./components/Footer";
+import Header from "./layouts/Header";
+// import Footer from "./layouts/Footer";
 export default function MyApp() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* <Route path="/cart" element={<CartPage />} /> */}
-      </Routes>
+      <Container sx={{ py: 3 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/cart" element={<CartPage />} /> */}
+        </Routes>
+      </Container>
       {/* <Footer /> */}
     </BrowserRouter>
   );
