@@ -1,15 +1,7 @@
 import Typography from "@mui/material/Typography";
-import {
-  Button,
-  Container,
-  TextField,
-  Box,
-  CardMedia,
-  Link,
-} from "@mui/material";
+import { Box, CardMedia, Link } from "@mui/material";
 import ButtonHandler from "../components/Button";
 import React, { useState } from "react";
-import InputLabel from "@mui/material/InputLabel";
 import { FormControl } from "@mui/material";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -17,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-export default function Login() {
+export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -69,7 +61,6 @@ export default function Login() {
   const setValuePass = (event) => {
     setPassword(event.target.value); // Lưu giá trị nhập vào state
   };
-
   return (
     <Box
       sx={{
@@ -113,13 +104,13 @@ export default function Login() {
           </Typography>
 
           <Link
-            href="/signup"
+            href="/login"
             target="_blank"
             underline="always"
             fontWeight="bold"
             color="primary"
           >
-            Sign Up
+            Back
           </Link>
         </Box>
         <Typography
@@ -133,7 +124,7 @@ export default function Login() {
             fontSize: "40px",
           }}
         >
-          Log in
+          Sign Up
         </Typography>
 
         <FormControl
@@ -153,6 +144,7 @@ export default function Login() {
               height: "10px",
             }}
           ></Box>
+
           <Typography variant="body1">Password</Typography>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -176,10 +168,23 @@ export default function Login() {
             }
             label="Password"
           />
+          <Box
+            sx={{
+              height: "10px",
+            }}
+          ></Box>
+
+          <Typography variant="body1">Email</Typography>
+          <OutlinedInput
+            type={"text"}
+            onChange={setValueName}
+            label="Email"
+            // error={errorEmail}
+          />
         </FormControl>
 
         <ButtonHandler
-          titleBtn={"Login"}
+          titleBtn={"Sign Up"}
           width={"90%"}
           onClick={handleSubmit}
         ></ButtonHandler>
