@@ -1,6 +1,18 @@
+import { useEffect, useState } from "react";
 import CardItem from "../components/CardItem";
 import { Container, Grid2 as Grid, Box } from "@mui/material";
+import { shopService } from "../services/shopServices";
+
 export default function Home() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getListData();
+  }, []);
+  const getListData = async (params) => {
+    const res = await shopService().getList(params);
+    setData(res.data);
+    console.log(res.data);
+  };
   return (
     <Container>
       <Box
@@ -8,22 +20,13 @@ export default function Home() {
           height: "10px",
         }}
       ></Box>
-    
-        <h2>Danh sách sản phẩm</h2>
 
       <Grid container spacing={3}>
-        <Grid size={4}>
-          <CardItem />
-        </Grid>
-        <Grid size={4}>
-          <CardItem />
-        </Grid>
-        <Grid size={4}>
-          <CardItem />
-        </Grid>
-        <Grid size={4}>
-          <CardItem />
-        </Grid>
+        {data.map((item, index) => (
+          <Grid size={4} key={index}>
+            <CardItem data={item.info} />
+          </Grid>
+        ))}
       </Grid>
     </Container>
   );

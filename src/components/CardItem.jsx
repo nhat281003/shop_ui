@@ -6,7 +6,7 @@ import {
   Box,
   Divider,
 } from "@mui/material";
-export default function CardItem() {
+export default function CardItem({ data }) {
   return (
     <Card
       style={{
@@ -17,7 +17,7 @@ export default function CardItem() {
     >
       <CardMedia
         component="img"
-        src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        src={data.url_image}
         style={{
           height: 256,
         }}
@@ -25,9 +25,9 @@ export default function CardItem() {
 
       <Box sx={{ padding: "16px" }}>
         <Typography sx={{ fontSize: "20px", fontWeight: "bold" }}>
-          hehe
+          {data.name}
         </Typography>
-        <Typography>des</Typography>
+        <Typography>{data.description}</Typography>
       </Box>
       <Divider sx={{ bgcolor: "black" }} />
       <Box
@@ -36,7 +36,8 @@ export default function CardItem() {
         alignItems="center"
         sx={{ padding: "16px" }}
       >
-        <Typography>100$</Typography>
+        <Typography>{data.price}</Typography>
+        <Typography>{data.price}</Typography>
       </Box>
     </Card>
   );
