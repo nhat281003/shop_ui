@@ -1,15 +1,9 @@
 import Typography from "@mui/material/Typography";
-import {
-  Button,
-  Container,
-  TextField,
-  Box,
-  CardMedia,
-  Link,
-} from "@mui/material";
+import Cookies from "js-cookie";
+import { Box, CardMedia, Link } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
 import ButtonHandler from "../components/Button";
 import React, { useState } from "react";
-import InputLabel from "@mui/material/InputLabel";
 import { FormControl } from "@mui/material";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -17,11 +11,12 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { authService } from "../services/authServices";
-import baseApiService from "../base_api/api_service";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const [notification, setNotification] = useState("");
 
   const [errorName, setErrorName] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
@@ -33,6 +28,20 @@ export default function Login() {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -41,7 +50,7 @@ export default function Login() {
     event.preventDefault();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (username === "" || username === null) {
       setErrorName(true);
       setHelperTextName("Username is required");
@@ -60,20 +69,22 @@ export default function Login() {
     }
 
     if (errorName === false && errorPass === false) {
-      // const res = authService().login({
-      //   username: username,
-      //   password: password,
-      // });
-
-      const res = baseApiService.post("/user/login", {
+      const res = await authService().login({
         username: username,
         password: password,
       });
 
-      console.log(res);
+      if (res.success === true) {
+        setNotification(res.message);
+        handleClick();
+        Cookies.set("token", res.token, { expires: 7 });
 
-      if (res != null) {
-        window.location.href = "/";
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 1000); // 2000ms = 2 giây
+      } else {
+        setNotification(res.message);
+        handleClick();
       }
     }
   };
@@ -199,6 +210,17 @@ export default function Login() {
           width={"90%"}
           onClick={handleSubmit}
         ></ButtonHandler>
+
+        <Snackbar
+          open={open}
+          // anchorOrigin={{"top", "bottom"}}
+          position="top right"
+          backgroundColor="#f5f5f5"
+          autoHideDuration={600}
+          onClose={handleClose}
+          message={notification}
+          // action={action}
+        />
 
         <Box
           sx={{

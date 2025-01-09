@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 
 
@@ -13,7 +14,8 @@ const apiService = axios.create({
 
 
 apiService.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
+    const token = Cookies.get('token');
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
