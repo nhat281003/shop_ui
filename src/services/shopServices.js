@@ -6,6 +6,9 @@ export const shopService = () => {
     getList: async (data) => {
       return await useApi.get("/product", data);
     },
+    getCategory: async (data) => {
+      return await useApi.get("/category", data);
+    },
     getDetail: async (id) => {
       return await useApi.get(`/product/detail/${id}`);
     },

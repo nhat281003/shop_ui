@@ -1,33 +1,43 @@
 import { useEffect, useState } from "react";
 import CardItem from "../components/CardItem";
+import Filter from "../components/Filter";
 import { Container, Grid2 as Grid, Box } from "@mui/material";
 import { shopService } from "../services/shopServices";
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState({
+    categoryName: "",
+    name: "",
+  });
   useEffect(() => {
     getListData();
   }, []);
-  const getListData = async (params) => {
-    const res = await shopService().getList(params);
+  const getListData = async () => {
+    const res = await shopService().getList(search);
     setData(res.data);
-    console.log(res.data);
+  };
+  const handleCatChange = (e) => {
+    setSearch({ ...search, categoryName: e });
+  };
+  const handleNameChange = (e) => {
+    setSearch({ ...search, name: e });
   };
   return (
-    <Container>
-      <Box
-        sx={{
-          height: "10px",
-        }}
-      ></Box>
-
-      <Grid container spacing={3}>
-        {data.map((item, index) => (
-          <Grid size={4} key={index}>
-            <CardItem data={item.info} />
-          </Grid>
-        ))}
+    <Grid container spacing={3}>
+      <Grid size={12}>
+        <Filter
+          data={search}
+          onCatChange={handleCatChange}
+          onNameChange={handleNameChange}
+          onSubmit={getListData}
+        />
       </Grid>
-    </Container>
+      {data.map((item, index) => (
+        <Grid size={4} key={index}>
+          <CardItem data={item} />
+        </Grid>
+      ))}
+    </Grid>
   );
 }

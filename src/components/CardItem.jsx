@@ -17,7 +17,7 @@ export default function CardItem({ data }) {
     >
       <CardMedia
         component="img"
-        src={data.url_image}
+        src={data.info.url_image}
         style={{
           height: 256,
         }}
@@ -25,9 +25,10 @@ export default function CardItem({ data }) {
 
       <Box sx={{ padding: "16px" }}>
         <Typography sx={{ fontSize: "20px", fontWeight: "bold" }}>
-          {data.name}
+          {data.info.name}
         </Typography>
-        <Typography>{data.description}</Typography>
+        <Typography>{data.info.description}</Typography>
+        {/* <Typography>{data.category.categoryName}</Typography> */}
       </Box>
       <Divider sx={{ bgcolor: "black" }} />
       <Box
@@ -36,8 +37,8 @@ export default function CardItem({ data }) {
         alignItems="center"
         sx={{ padding: "16px" }}
       >
-        <Typography>{data.price}</Typography>
-        <Typography>{data.price}</Typography>
+        <Typography>{data.info.price}</Typography>
+        <Typography>SL: {data.info.stock || "0"}</Typography>
       </Box>
     </Card>
   );
