@@ -1,4 +1,7 @@
 /* reset.css */
+iframe {
+  display: none;
+}
 
 /* Box Model */
 * {
