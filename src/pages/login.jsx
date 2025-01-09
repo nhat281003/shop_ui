@@ -16,6 +16,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { authService } from "../services/authServices";
+import baseApiService from "../base_api/api_service";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -58,7 +60,21 @@ export default function Login() {
     }
 
     if (errorName === false && errorPass === false) {
-      window.location.href = "/home";
+      // const res = authService().login({
+      //   username: username,
+      //   password: password,
+      // });
+
+      const res = baseApiService.post("/user/login", {
+        username: username,
+        password: password,
+      });
+
+      console.log(res);
+
+      if (res != null) {
+        window.location.href = "/";
+      }
     }
   };
 

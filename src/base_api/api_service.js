@@ -20,7 +20,8 @@ apiService.interceptors.request.use((config) => {
     return config;
 }, (error) => {
     return Promise.reject(error);
-});
+}
+);
 
 
 
@@ -28,9 +29,9 @@ apiService.interceptors.response.use((response) => {
     return response.data;
 }, (error) => {
     if(error.response){
-        console.error('API Error:', error.response.status, error.response.data);
+        console.log('API Error:', error.response.status, error.response.data);
     }else {
-        console.error('NetWork Error:', error.message);
+        console.log('NetWork Error:', error.message);
 
     }
     return Promise.reject(error);
