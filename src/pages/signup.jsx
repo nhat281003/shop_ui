@@ -187,6 +187,7 @@ export default function SignUp() {
           titleBtn={"Sign Up"}
           width={"90%"}
           onClick={handleSubmit}
+          backgroundColor={"blue"}
         ></ButtonHandler>
 
         <Box

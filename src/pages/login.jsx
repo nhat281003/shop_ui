@@ -208,6 +208,7 @@ export default function Login() {
         <ButtonHandler
           titleBtn={"Login"}
           width={"90%"}
+          backgroundColor={"blue"}
           onClick={handleSubmit}
         ></ButtonHandler>
 

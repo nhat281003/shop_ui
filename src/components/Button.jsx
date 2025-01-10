@@ -1,15 +1,21 @@
 import { Button } from "@mui/material";
-export default function ButtonHandler({ titleBtn, onClick , width}) {
+export default function ButtonHandler({
+  titleBtn,
+  onClick,
+  width,
+  backgroundColor,
+}) {
   return (
     <Button
       sx={{
-        width: {width},
+        width: { width },
         color: "white",
-        backgroundColor: "blue",
-        margin: "10px 10px 10px 10px",
+        backgroundColor: { backgroundColor },
+        marginTop: "10px",
+        marginBottom: "10px",
         height: "50px",
         border: "1px solid black",
-        "&:hover": { backgroundColor: "blue" },
+        "&:hover": { backgroundColor: { backgroundColor } },
       }}
       color="inherit"
       onClick={onClick}

@@ -23,6 +23,10 @@ export default function Home() {
   const handleNameChange = (e) => {
     setSearch({ ...search, name: e });
   };
+
+  const handleRedirect = () => {
+    window.location.href = "/detail";
+  };
   return (
     <Grid container spacing={3}>
       <Grid size={12}>
@@ -35,7 +39,7 @@ export default function Home() {
       </Grid>
       {data.map((item, index) => (
         <Grid size={4} key={index}>
-          <CardItem data={item} />
+          <CardItem data={item} handleClick={handleRedirect} />
         </Grid>
       ))}
     </Grid>

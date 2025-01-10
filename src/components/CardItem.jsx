@@ -6,9 +6,10 @@ import {
   Box,
   Divider,
 } from "@mui/material";
-export default function CardItem({ data }) {
+export default function CardItem({ data, handleClick }) {
   return (
     <Card
+      onClick={handleClick}
       style={{
         border: "1px solid black",
         overflow: "hidden",
@@ -16,10 +17,11 @@ export default function CardItem({ data }) {
       className="item-other"
     >
       <CardMedia
+        onclick={handleClick}
         component="img"
         src={data.info.url_image}
         style={{
-          height: 256,
+          height: 260,
         }}
       />
 
