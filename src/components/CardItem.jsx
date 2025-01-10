@@ -9,7 +9,7 @@ import {
 export default function CardItem({ data, handleClick }) {
   return (
     <Card
-      onClick={handleClick}
+      onClick={handleClick(data.id)}
       style={{
         border: "1px solid black",
         overflow: "hidden",
@@ -17,7 +17,6 @@ export default function CardItem({ data, handleClick }) {
       className="item-other"
     >
       <CardMedia
-        onclick={handleClick}
         component="img"
         src={data.info.url_image}
         style={{

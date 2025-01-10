@@ -1,4 +1,14 @@
-import { Container, Box, CardMedia, Typography, Divider } from "@mui/material";
+import {
+  Container,
+  Box,
+  CardMedia,
+  Typography,
+  Divider,
+  FormControl,
+  FormLabel,
+  FormGroup,
+  FormHelperText,
+} from "@mui/material";
 import ButtonHandler from "../components/Button";
 import { AttachMoney, LoyaltyOutlined, Addchart } from "@mui/icons-material";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -10,6 +20,8 @@ export default function DetailProduct() {
 
   useEffect(() => {
     getDetailProduct();
+    const queryParams = new URLSearchParams(window.location.search);
+    console.log(queryParams.get("id"));
   }, []);
 
   const getDetailProduct = async () => {
