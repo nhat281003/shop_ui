@@ -1,4 +1,11 @@
-import { Container, Box, CardMedia, Typography, Divider } from "@mui/material";
+import {
+  Container,
+  Box,
+  CardMedia,
+  Typography,
+  Divider,
+  Card,
+} from "@mui/material";
 import ButtonHandler from "../components/Button";
 import { AttachMoney, LoyaltyOutlined, Addchart } from "@mui/icons-material";
 import { shopService } from "../services/shopServices";
@@ -115,7 +122,6 @@ export default function DetailProduct() {
                 alignItems: "center",
               }}
             >
-              {/* <AttachMoney style={{ fontSize: 30, color: "orangered" }} />{" "} */}
               <Typography
                 sx={{
                   color: "red",
@@ -141,7 +147,6 @@ export default function DetailProduct() {
                   bgcolor: "black",
                 }}
               ></Box>
-              {/* <Addchart style={{ fontSize: 30, color: "orangered" }} />{" "} */}
               <Typography
                 sx={{
                   color: "red",
@@ -167,6 +172,16 @@ export default function DetailProduct() {
                   bgcolor: "black",
                 }}
               ></Box>
+              <CardMedia
+                component="img"
+                src={data.info.trademark}
+                style={{
+                  flexGrow: 1,
+                  objectFit: "contain",
+                  height: "50px",
+                  width: "48%",
+                }}
+              />
             </Box>
 
             <Divider sx={{ bgcolor: "black" }} />
