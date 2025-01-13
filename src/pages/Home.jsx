@@ -10,9 +10,16 @@ export default function Home() {
     categoryName: "",
     name: "",
   });
+  const [isReset, setIsReset] = useState(false);
   useEffect(() => {
     getListData();
   }, []);
+  useEffect(() => {
+    if (isReset) {
+      getListData();
+      setIsReset(false);
+    }
+  }, [isReset]);
   const getListData = async () => {
     const res = await shopService().getList(search);
     setData(res.data);
@@ -23,7 +30,13 @@ export default function Home() {
   const handleNameChange = (e) => {
     setSearch({ ...search, name: e });
   };
-
+  const handleReset = async () => {
+    setSearch(() => ({
+      categoryName: "",
+      name: "",
+    }));
+    setIsReset(true);
+  };
   const handleRedirect = (e) => {
     window.location.href = `/detail?id=${e}`;
   };
@@ -34,6 +47,7 @@ export default function Home() {
           data={search}
           onCatChange={handleCatChange}
           onNameChange={handleNameChange}
+          onReset={handleReset}
           onSubmit={getListData}
         />
       </Grid>

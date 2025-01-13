@@ -7,13 +7,20 @@ import {
   TextField,
   Button,
   IconButton,
+  Box,
   InputAdornment,
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useEffect, useState } from "react";
 import { shopService } from "../services/shopServices";
 
-export default function Filter({ data, onCatChange, onNameChange, onSubmit }) {
+export default function Filter({
+  data,
+  onCatChange,
+  onNameChange,
+  onReset,
+  onSubmit,
+}) {
   const [category, setCategory] = useState([]);
   useEffect(() => {
     getListCategory();
@@ -25,8 +32,8 @@ export default function Filter({ data, onCatChange, onNameChange, onSubmit }) {
   const handleChangeCat = (e) => {
     onCatChange(e.target.value);
   };
-  const handleClearCat = (e) => {
-    onCatChange("");
+  const handleReset = () => {
+    onReset();
   };
   const handleChangeName = (e) => {
     onNameChange(e.target.value);
@@ -53,15 +60,28 @@ export default function Filter({ data, onCatChange, onNameChange, onSubmit }) {
         value={data.name}
         onChange={handleChangeName}
       />
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        className="item-other"
-        onClick={handleSubmit}
-      >
-        Search
-      </Button>
+      <Box sx={{ display: "flex", gap: 2 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          className="item-other"
+          sx={{ flexGrow: 1 }}
+          onClick={handleReset}
+        >
+          Reset
+        </Button>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          className="item-other"
+          sx={{ flexGrow: 1 }}
+          onClick={handleSubmit}
+        >
+          Search
+        </Button>
+      </Box>
     </FormControl>
   );
 }
