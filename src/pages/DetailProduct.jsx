@@ -85,7 +85,7 @@ export default function DetailProduct() {
       >
         <CardMedia
           component="img"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDp9xjDfEPD1K1TcFXoxdPsH3W2rfUVQ4zXQ&s"
+          src={data.info.url_image}
           style={{
             objectFit: "contain",
             height: 600,
@@ -115,7 +115,7 @@ export default function DetailProduct() {
                 padding: "10px",
               }}
             >
-              Product Name
+              {data.info.name}
             </Typography>
             <Divider sx={{ bgcolor: "black" }} />
 
@@ -132,7 +132,7 @@ export default function DetailProduct() {
                   padding: "10px",
                 }}
               >
-                Product Price
+                {data.info.price}
               </Typography>
               <Box
                 sx={{
@@ -147,7 +147,7 @@ export default function DetailProduct() {
                   padding: "10px",
                 }}
               >
-                Product Stock
+                {data.info.stock}
               </Typography>
               <Box
                 sx={{
@@ -164,7 +164,7 @@ export default function DetailProduct() {
                 padding: "10px",
               }}
             >
-              Product Description
+              {data.info.description}
             </Typography>
           </Box>
 
