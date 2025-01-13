@@ -21,9 +21,6 @@ export default function Login() {
   const [errorName, setErrorName] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
 
-  const [helperTextName, setHelperTextName] = useState("");
-  const [helperTextPass, setHelperTextPass] = useState("");
-
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -53,19 +50,15 @@ export default function Login() {
   const handleSubmit = async () => {
     if (username === "" || username === null) {
       setErrorName(true);
-      setHelperTextName("Username is required");
     } else {
       setErrorName(false);
-      setHelperTextName("");
     }
 
     if (password === "" || password === null) {
       setErrorPass(true);
-      setHelperTextPass("Password is required");
       return;
     } else {
       setErrorPass(false);
-      setHelperTextPass("");
     }
 
     if (errorName === false && errorPass === false) {
@@ -138,7 +131,7 @@ export default function Login() {
           >
             Shop
           </Typography>
-
+          {/* 
           <Link
             href="/signup"
             target="_blank"
@@ -147,7 +140,23 @@ export default function Login() {
             color="primary"
           >
             Sign Up
-          </Link>
+          </Link> */}
+
+          <Typography
+            sx={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              textAlign: "center",
+              "&:hover": {
+                color: "red",
+              },
+            }}
+            onClick={() => {
+              window.location.href = "/signup";
+            }}
+          >
+            Sign Up
+          </Typography>
         </Box>
         <Typography
           variant="h8"

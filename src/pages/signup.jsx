@@ -8,18 +8,21 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { authService } from "../services/authServices";
+import Snackbar from "@mui/material/Snackbar";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const [errorName, setErrorName] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
-
-  const [helperTextName, setHelperTextName] = useState("");
-  const [helperTextPass, setHelperTextPass] = useState("");
+  const [errorEmail, setErrorEmail] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
+  const [notification, setNotification] = useState("");
+  const [open, setOpen] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -31,31 +34,68 @@ export default function SignUp() {
     event.preventDefault();
   };
 
-  const handleSubmit = () => {
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleSubmit = async () => {
     if (username === "" || username === null) {
       setErrorName(true);
-      setHelperTextName("Username is required");
     } else {
       setErrorName(false);
-      setHelperTextName("");
     }
 
     if (password === "" || password === null) {
       setErrorPass(true);
-      setHelperTextPass("Password is required");
       return;
     } else {
       setErrorPass(false);
-      setHelperTextPass("");
     }
 
-    if (errorName === false && errorPass === false) {
-      window.location.href = "/home";
+    if (email === "" || email === null) {
+      setErrorEmail(true);
+      return;
+    } else {
+      setErrorEmail(false);
+    }
+
+    if (errorName === false && errorPass === false && errorEmail === false) {
+      const res = await authService().signup({
+        username: username,
+        password: password, // Replace with hashed password
+        email: email,
+      });
+      console.log("res" + res);
+
+      if (res.success) {
+        setNotification(res.message);
+        handleClick();
+        console.log("Success");
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 1000);
+        console.log("Success2");
+      } else {
+        setNotification(res.message);
+        handleClick();
+      }
     }
   };
 
   const setValueName = (event) => {
     setUsername(event.target.value);
+  };
+
+  const setValueEmail = (event) => {
+    setEmail(event.target.value);
   };
 
   const setValuePass = (event) => {
@@ -103,15 +143,32 @@ export default function SignUp() {
             Shop
           </Typography>
 
-          <Link
-            href="/login"
-            target="_blank"
-            underline="always"
-            fontWeight="bold"
-            color="primary"
+          <Typography
+            sx={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              textAlign: "center",
+              "&:hover": {
+                color: "red",
+              },
+            }}
+            onClick={() => {
+              window.location.href = "/login";
+            }}
           >
             Back
-          </Link>
+          </Typography>
+
+          <Snackbar
+            open={open}
+            // anchorOrigin={{"top", "bottom"}}
+            position="top right"
+            backgroundColor="#f5f5f5"
+            autoHideDuration={600}
+            onClose={handleClose}
+            message={notification}
+            // action={action}
+          />
         </Box>
         <Typography
           variant="h8"
@@ -177,9 +234,9 @@ export default function SignUp() {
           <Typography variant="body1">Email</Typography>
           <OutlinedInput
             type={"text"}
-            onChange={setValueName}
+            onChange={setValueEmail}
             label="Email"
-            // error={errorEmail}
+            error={errorEmail}
           />
         </FormControl>
 

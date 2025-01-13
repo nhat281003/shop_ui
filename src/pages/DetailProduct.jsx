@@ -1,17 +1,6 @@
-import {
-  Container,
-  Box,
-  CardMedia,
-  Typography,
-  Divider,
-  FormControl,
-  FormLabel,
-  FormGroup,
-  FormHelperText,
-} from "@mui/material";
+import { Container, Box, CardMedia, Typography, Divider } from "@mui/material";
 import ButtonHandler from "../components/Button";
 import { AttachMoney, LoyaltyOutlined, Addchart } from "@mui/icons-material";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import { shopService } from "../services/shopServices";
 import { cartService } from "../services/cartServices";
 import { useEffect, useState } from "react";
@@ -126,13 +115,24 @@ export default function DetailProduct() {
                 alignItems: "center",
               }}
             >
-              <AttachMoney style={{ fontSize: 30, color: "orangered" }} />{" "}
+              {/* <AttachMoney style={{ fontSize: 30, color: "orangered" }} />{" "} */}
+              <Typography
+                sx={{
+                  color: "red",
+                  fontWeight: "bold",
+                  paddingBottom: "10px",
+                  paddingTop: "10px",
+                  paddingLeft: "10px",
+                }}
+              >
+                Giá:
+              </Typography>
               <Typography
                 sx={{
                   padding: "10px",
                 }}
               >
-                {data.info.price}
+                {data.info.price}$
               </Typography>
               <Box
                 sx={{
@@ -141,7 +141,18 @@ export default function DetailProduct() {
                   bgcolor: "black",
                 }}
               ></Box>
-              <Addchart style={{ fontSize: 30, color: "orangered" }} />{" "}
+              {/* <Addchart style={{ fontSize: 30, color: "orangered" }} />{" "} */}
+              <Typography
+                sx={{
+                  color: "red",
+                  fontWeight: "bold",
+                  paddingBottom: "10px",
+                  paddingTop: "10px",
+                  paddingLeft: "10px",
+                }}
+              >
+                Số lượng:
+              </Typography>
               <Typography
                 sx={{
                   padding: "10px",

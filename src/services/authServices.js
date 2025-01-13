@@ -6,5 +6,10 @@ export const authService = () => {
     login: async (data) => {
       return await useApi.post("/user/login", data);
     },
+
+
+    signup : async (data) => {
+      return await useApi.post("/user/register", data);
+    },
   };
 };
