@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const apiService = axios.create({
-  baseURL: "http://192.168.1.240:8080/",
+  baseURL: "http://192.168.137.126:8080/",
   responseType: "json",
   headers: {
     "Content-Type": "application/json",

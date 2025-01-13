@@ -16,20 +16,20 @@ import { shopService } from "../services/shopServices";
 import { useEffect, useState } from "react";
 
 export default function DetailProduct() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    getDetailProduct();
     const queryParams = new URLSearchParams(window.location.search);
-    console.log(queryParams.get("id"));
+    const id = queryParams.get("id");
+    getDetailProduct(id);
   }, []);
 
-  const getDetailProduct = async () => {
-    const res = await shopService.getDetailProduct("677fa11b555e20f4b1903f72");
+  const getDetailProduct = async (id) => {
+    const res = await shopService().getDetail(id);
     setData(res.data);
   };
 
-  return (
+  return data ? (
     <div
       sx={{
         flexDirection: "column",
@@ -63,11 +63,6 @@ export default function DetailProduct() {
           >
             {data.info.name}
           </Typography>
-          <ButtonHandler
-            titleBtn={"Add to Cart"}
-            backgroundColor={"green"}
-            // onClick={handleSubmit}
-          ></ButtonHandler>
         </Container>
       </Box>
       <Divider sx={{ bgcolor: "black", marginBottom: "20px" }}></Divider>
@@ -84,7 +79,7 @@ export default function DetailProduct() {
           component="img"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDp9xjDfEPD1K1TcFXoxdPsH3W2rfUVQ4zXQ&s"
           style={{
-            objectFit: "cover",
+            objectFit: "contain",
             height: 600,
           }}
         />
@@ -186,5 +181,5 @@ export default function DetailProduct() {
         </Box>
       </Container>
     </div>
-  );
+  ) : null;
 }

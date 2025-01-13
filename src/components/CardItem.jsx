@@ -9,7 +9,9 @@ import {
 export default function CardItem({ data, handleClick }) {
   return (
     <Card
-      onClick={handleClick(data.id)}
+      onClick={() => {
+        handleClick(data._id);
+      }}
       style={{
         border: "1px solid black",
         overflow: "hidden",
