@@ -12,5 +12,8 @@ export const cartService = () => {
     remove: async (id) => {
       return await useApi.delete(`/cart/delete/${id}`);
     },
+    purchase: async (data) => {
+      return await useApi.post("/cart/purchase", data);
+    },
   };
 };

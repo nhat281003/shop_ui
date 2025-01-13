@@ -5,13 +5,13 @@ const isPhoneNumberValid = (phone) => {
   return phoneRegex.test(phone);
 };
 
-const UserInfo = (onSubmit) => {
+const UserInfo = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    phone: "",
+    phoneNumber: "",
     address: "",
   });
   const [errors, setErrors] = useState({
-    phone: "",
+    phoneNumber: "",
     address: "",
   });
 
@@ -25,10 +25,10 @@ const UserInfo = (onSubmit) => {
     e.preventDefault();
     let validationErrors = {};
 
-    if (!formData.phone) {
-      validationErrors.phone = "Phone number is required.";
-    } else if (!isPhoneNumberValid(formData.phone)) {
-      validationErrors.phone = "Invalid phone number.";
+    if (!formData.phoneNumber) {
+      validationErrors.phoneNumber = "Phone number is required.";
+    } else if (!isPhoneNumberValid(formData.phoneNumber)) {
+      validationErrors.phoneNumber = "Invalid phone number.";
     }
 
     if (!formData.address) {
@@ -63,11 +63,11 @@ const UserInfo = (onSubmit) => {
 
       <TextField
         label="Phone Number"
-        name="phone"
-        value={formData.phone}
+        name="phoneNumber"
+        value={formData.phoneNumber}
         onChange={handleChange}
-        error={Boolean(errors.phone)}
-        helperText={errors.phone}
+        error={Boolean(errors.phoneNumber)}
+        helperText={errors.phoneNumber}
         fullWidth
       />
 

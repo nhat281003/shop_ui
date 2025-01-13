@@ -16,6 +16,12 @@ export default function Cart() {
       getList();
     }
   };
+  const handlePurchase = async (data) => {
+    const res = await cartService().purchase(data);
+    if (res.success) {
+      getList();
+    }
+  };
   useEffect(() => {
     getList();
   }, []);
@@ -28,7 +34,7 @@ export default function Cart() {
           </Grid>
 
           <Grid size={{ xs: 12, md: 4 }}>
-            <UserInfo onSubmit={(e) => console.log(e)} />
+            <UserInfo onSubmit={(e) => handlePurchase(e)} />
           </Grid>
         </>
       ) : (
