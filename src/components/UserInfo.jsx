@@ -5,7 +5,7 @@ const isPhoneNumberValid = (phone) => {
   return phoneRegex.test(phone);
 };
 
-const UserInfo = () => {
+const UserInfo = (onSubmit) => {
   const [formData, setFormData] = useState({
     phone: "",
     address: "",
@@ -38,9 +38,9 @@ const UserInfo = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
+      console.log(formData);
       // Process form submission
-      console.log("Form submitted successfully:", formData);
-      alert("Form submitted successfully!");
+      onSubmit(formData);
     }
   };
 
@@ -81,7 +81,14 @@ const UserInfo = () => {
         fullWidth
       />
 
-      <Button type="submit" variant="contained" color="primary" fullWidth>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        fullWidth
+        className="item-other"
+        onClick={handleSubmit}
+      >
         Submit
       </Button>
     </Box>

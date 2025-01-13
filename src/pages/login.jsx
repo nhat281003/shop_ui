@@ -77,7 +77,7 @@ export default function Login() {
       if (res.success === true) {
         setNotification(res.message);
         handleClick();
-        Cookies.set("token", res.token, { expires: 7 });
+        Cookies.set("token", res.data.token, { expires: 7 });
 
         setTimeout(() => {
           window.location.href = "/";

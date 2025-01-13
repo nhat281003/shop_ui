@@ -13,6 +13,7 @@ import ButtonHandler from "../components/Button";
 import { AttachMoney, LoyaltyOutlined, Addchart } from "@mui/icons-material";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { shopService } from "../services/shopServices";
+import { cartService } from "../services/cartServices";
 import { useEffect, useState } from "react";
 
 export default function DetailProduct() {
@@ -27,6 +28,13 @@ export default function DetailProduct() {
   const getDetailProduct = async (id) => {
     const res = await shopService().getDetail(id);
     setData(res.data);
+  };
+
+  const handleSubmit = async () => {
+    const res = await cartService().add({
+      productId: data._id,
+      quantity: 1,
+    });
   };
 
   return data ? (
@@ -169,13 +177,11 @@ export default function DetailProduct() {
               border: "0.5px solid",
             }}
           >
-            <Typography>Số lượng</Typography>
-            <OutlinedInput margin="10px" type={"text"} label="Số lượng" />
             <ButtonHandler
               titleBtn={"Add to Cart"}
               width={"100%"}
               backgroundColor={"green"}
-              // onClick={handleSubmit}
+              onClick={handleSubmit}
             ></ButtonHandler>
           </Box>
         </Box>
