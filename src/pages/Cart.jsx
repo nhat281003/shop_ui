@@ -12,7 +12,9 @@ export default function Cart() {
   };
   const handleRemove = async (id) => {
     const res = await cartService().remove(id);
-    if (res.success) getList();
+    if (res.success) {
+      getList();
+    }
   };
   useEffect(() => {
     getList();

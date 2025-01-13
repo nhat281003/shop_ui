@@ -32,7 +32,7 @@ export default function DetailProduct() {
 
   const handleSubmit = async () => {
     const res = await cartService().add({
-      productId: data._id,
+      product: data._id,
       quantity: 1,
     });
   };
