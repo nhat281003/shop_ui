@@ -23,8 +23,8 @@ const CartSummaryHistory = ({ data }) => {
             }}
           >
             <img
-              src={item?.url_image}
-              alt={item?.title}
+              src={item?.productId?.info?.url_image}
+              alt={item?.productId?.info?.title}
               style={{
                 width: 60,
                 height: 60,
@@ -34,11 +34,11 @@ const CartSummaryHistory = ({ data }) => {
             />
             <Box sx={{ flex: 1 }}>
               <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                {item?.name}
+                {item?.productId?.info?.name}
               </Typography>
-              {item?.description && (
+              {item?.productId?.info?.description && (
                 <Typography variant="body2" sx={{ color: "#555" }}>
-                  {item?.description}
+                  {item?.productId?.info?.description}
                 </Typography>
               )}
               <Box
@@ -49,7 +49,9 @@ const CartSummaryHistory = ({ data }) => {
                   mt: 1,
                 }}
               >
-                <Typography variant="body2">{item?.price}</Typography>
+                <Typography variant="body2">
+                  {item?.productId?.info?.price}
+                </Typography>
               </Box>
             </Box>
           </Box>
