@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
 import Cart from "./pages/Cart";
+import History from "./pages/History";
 import BlankLayout from "./layouts/blank";
 import DefaultLayout from "./layouts/default";
 import DetailProduct from "./pages/DetailProduct";
@@ -18,6 +19,7 @@ export default function MyApp() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/detail" element={<DetailProduct />} />
+          <Route path="/history" element={<History />} />
         </Route>
       </Routes>
     </BrowserRouter>

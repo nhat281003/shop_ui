@@ -1,17 +1,6 @@
 import { Box, Typography, Button, Divider, Link } from "@mui/material";
-import { useEffect, useState } from "react";
-const CartSummary = ({ data, onRemove }) => {
-  const handleRemove = (id) => {
-    onRemove(id);
-  };
-
-  useEffect(() => {
-    setTotal(
-      data.reduce((total, item) => total + item?.productDetail?.info?.price, 0)
-    );
-  }, [data]);
-
-  const [total, setTotal] = useState(0);
+const CartSummaryHistory = ({ data }) => {
+  const total = data.items.reduce((total, item) => total + item.price, 0);
 
   return (
     data && (
@@ -23,7 +12,7 @@ const CartSummary = ({ data, onRemove }) => {
           color: "#000",
         }}
       >
-        {data.map((item, index) => (
+        {data.items.map((item, index) => (
           <Box
             key={index}
             sx={{
@@ -34,8 +23,8 @@ const CartSummary = ({ data, onRemove }) => {
             }}
           >
             <img
-              src={item?.productDetail?.info?.url_image}
-              alt={item?.productDetail?.info?.title}
+              src={item?.url_image}
+              alt={item?.title}
               style={{
                 width: 60,
                 height: 60,
@@ -45,11 +34,11 @@ const CartSummary = ({ data, onRemove }) => {
             />
             <Box sx={{ flex: 1 }}>
               <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                {item?.productDetail?.info?.name}
+                {item?.name}
               </Typography>
-              {item?.productDetail?.info?.description && (
+              {item?.description && (
                 <Typography variant="body2" sx={{ color: "#555" }}>
-                  {item?.productDetail?.info?.description}
+                  {item?.description}
                 </Typography>
               )}
               <Box
@@ -60,26 +49,9 @@ const CartSummary = ({ data, onRemove }) => {
                   mt: 1,
                 }}
               >
-                <Typography variant="body2">
-                  {item?.productDetail?.info?.price}
-                </Typography>
+                <Typography variant="body2">{item?.price}</Typography>
               </Box>
             </Box>
-
-            <Button
-              variant="outlined"
-              color="error"
-              size="small"
-              onClick={() => handleRemove(item?.productDetail?.info?._id)}
-              sx={{
-                alignSelf: "center",
-                position: "absolute",
-                top: 0,
-                right: 0,
-              }}
-            >
-              Remove
-            </Button>
           </Box>
         ))}
 
@@ -104,4 +76,4 @@ const CartSummary = ({ data, onRemove }) => {
   );
 };
 
-export default CartSummary;
+export default CartSummaryHistory;

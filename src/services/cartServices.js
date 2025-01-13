@@ -15,5 +15,8 @@ export const cartService = () => {
     purchase: async (data) => {
       return await useApi.post("/cart/purchase", data);
     },
+    history: async (data) => {
+      return await useApi.get("/cart/purchase_history", data);
+    },
   };
 };

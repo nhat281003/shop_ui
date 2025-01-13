@@ -1,15 +1,20 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
+import Cookies from "js-cookie";
 
 export default function Header() {
-  const token = document.cookie
+  let token = document.cookie
     .split("; ")
     .find((row) => row.startsWith("token="));
+
+  const logOut = () => {
+    Cookies.remove("token");
+    window.location.href = "/";
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -39,20 +44,48 @@ export default function Header() {
             Shop
           </Typography>
           {token ? (
-            <Button
-              sx={{
-                backgroundColor: "#f5f5f5",
-                border: "1px solid black",
-                "&:hover": { backgroundColor: "#f5f5f5" },
-              }}
-              color="inherit"
-              onClick={() => {
-                window.location.href = "/cart";
-              }}
-              className="item-other"
-            >
-              Cart
-            </Button>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Button
+                sx={{
+                  backgroundColor: "#f5f5f5",
+                  border: "1px solid black",
+                  "&:hover": { backgroundColor: "#f5f5f5" },
+                }}
+                color="inherit"
+                onClick={() => {
+                  window.location.href = "/history";
+                }}
+                className="item-other"
+              >
+                History
+              </Button>
+              <Button
+                sx={{
+                  backgroundColor: "#f5f5f5",
+                  border: "1px solid black",
+                  "&:hover": { backgroundColor: "#f5f5f5" },
+                }}
+                color="inherit"
+                onClick={() => {
+                  window.location.href = "/cart";
+                }}
+                className="item-other"
+              >
+                Cart
+              </Button>
+              <Button
+                sx={{
+                  backgroundColor: "#f5f5f5",
+                  border: "1px solid black",
+                  "&:hover": { backgroundColor: "#f5f5f5" },
+                }}
+                color="inherit"
+                onClick={logOut}
+                className="item-other"
+              >
+                Logout
+              </Button>
+            </Box>
           ) : (
             <Button
               sx={{
