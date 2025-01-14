@@ -7,6 +7,7 @@ import History from "./pages/History";
 import BlankLayout from "./layouts/blank";
 import DefaultLayout from "./layouts/default";
 import DetailProduct from "./pages/DetailProduct";
+import CreateProduct from "./pages/CreateProduct";
 export default function MyApp() {
   return (
     <BrowserRouter>
@@ -20,6 +21,7 @@ export default function MyApp() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/detail" element={<DetailProduct />} />
           <Route path="/history" element={<History />} />
+          <Route path="/createProduct" element={<CreateProduct />} />
         </Route>
       </Routes>
     </BrowserRouter>

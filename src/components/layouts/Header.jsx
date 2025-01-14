@@ -53,6 +53,21 @@ export default function Header() {
                 }}
                 color="inherit"
                 onClick={() => {
+                  window.location.href = "/createProduct";
+                }}
+                className="item-other"
+              >
+                Add Product
+              </Button>
+
+              <Button
+                sx={{
+                  backgroundColor: "#f5f5f5",
+                  border: "1px solid black",
+                  "&:hover": { backgroundColor: "#f5f5f5" },
+                }}
+                color="inherit"
+                onClick={() => {
                   window.location.href = "/history";
                 }}
                 className="item-other"

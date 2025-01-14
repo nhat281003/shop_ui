@@ -12,5 +12,9 @@ export const shopService = () => {
     getDetail: async (id) => {
       return await useApi.get(`/product/detail/${id}`);
     },
+
+    createProduct : async (data) => {
+      return await useApi.post("/product", data);
+    }
   };
 };

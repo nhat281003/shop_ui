@@ -27,10 +27,15 @@ export default function CardItem({ data, handleClick }) {
       />
 
       <Box sx={{ padding: "16px" }}>
-        <Typography sx={{ fontSize: "20px", fontWeight: "bold" }}>
+        <Typography
+          className="truncate-multiline"
+          sx={{ fontSize: "20px", fontWeight: "bold" }}
+        >
           {data.info.name}
         </Typography>
-        <Typography>{data.info.description}</Typography>
+        <Typography className="truncate-multiline">
+          {data.info.description}
+        </Typography>
         {/* <Typography>{data.category.categoryName}</Typography> */}
       </Box>
       <Divider sx={{ bgcolor: "black" }} />

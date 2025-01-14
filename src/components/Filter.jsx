@@ -6,11 +6,8 @@ import {
   MenuItem,
   TextField,
   Button,
-  IconButton,
   Box,
-  InputAdornment,
 } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
 import { useEffect, useState } from "react";
 import { shopService } from "../services/shopServices";
 

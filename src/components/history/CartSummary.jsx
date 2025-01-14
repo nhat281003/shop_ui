@@ -37,10 +37,14 @@ const CartSummaryHistory = ({ data }) => {
                 {item?.productId?.info?.name}
               </Typography>
               {item?.productId?.info?.description && (
-                <Typography variant="body2" sx={{ color: "#555" }}>
+                // <Typography variant="body2" sx={{ color: "#555" }}>
+                //   {item?.productId?.info?.description}
+                // </Typography>
+                <div className="truncate-multiline">
                   {item?.productId?.info?.description}
-                </Typography>
+                </div>
               )}
+
               <Box
                 sx={{
                   display: "flex",

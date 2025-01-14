@@ -110,6 +110,13 @@ input[type="submit"]:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.truncate-multiline {
+  display: -webkit-box;        /* Required for line clamping */
+  -webkit-line-clamp: 2;       /* Number of lines to show */
+  -webkit-box-orient: vertical; /* Orientation of the box */
+  overflow: hidden;            /* Hide overflow */
+}
+
 .item:hover {
   transform: translate(-4px, -4px);
   box-shadow: 5px 5px;
